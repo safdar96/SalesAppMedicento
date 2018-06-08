@@ -6,22 +6,42 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText mUsernameEditText;
+    EditText mUsernameEditText,newPharma,newArea;
     EditText mPasswordEditText;
     TextWatcher mTextWatcher;
-    Button mSignInButton;
-
+    TextView pharma,area;
+    Button mSignInButton,addPharma,addArea;
+    Spinner slots;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.product_area_details);
+        slots = (Spinner) findViewById(R.id.slots);
+        addArea = (Button) findViewById(R.id.area_button);
+        addPharma = (Button) findViewById(R.id.pharma_button);
+        newPharma = (EditText) findViewById(R.id.added_pharmacy);
+        newArea = (EditText) findViewById(R.id.added_area);
+        pharma = (TextView) findViewById(R.id.pharma);
+        area = (TextView) findViewById(R.id.area);
 
-        initializeDataMembers();
+        // Slots Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.slots,android.R.layout.simple_list_item_1);
+        slots.setAdapter(adapter);
+
+        //
+        addArea.setOnClickListener(this);
+        addPharma.setOnClickListener(this);
+
+       /* initializeDataMembers();
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void initializeDataMembers() {
         mUsernameEditText = findViewById(R.id.username_edit_tv);
         mPasswordEditText = findViewById(R.id.password_edit_tv);
@@ -66,5 +85,22 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkIfTheUserIsAuthenticated() {
         //To be implemented
         return true;
+    }*/
+    }
+
+    @Override
+    public void onClick(View v) {
+        newPharma = (EditText) findViewById(R.id.added_pharmacy);
+        newArea = (EditText) findViewById(R.id.added_area);
+        pharma = (TextView) findViewById(R.id.pharma);
+        area = (TextView) findViewById(R.id.area);
+        switch(v.getId()) {
+            case R.id.pharma_button:
+                pharma.setText(newPharma.getText());
+                break;
+            case R.id.area_button:
+                area.setText(newArea.getText());
+                break;
+        }
     }
 }
