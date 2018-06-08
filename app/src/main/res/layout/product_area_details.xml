@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="20dp"
+    android:id="@+id/colayout"
     android:layout_marginRight="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,39 +12,36 @@
         android:src="@drawable/logo"
         android:layout_marginBottom="20dp"
         />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Area : "
-            android:textStyle="bold"
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
-            />
-        <EditText
-            android:layout_marginLeft="60dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/area_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Add New Area : "
-            android:id="@+id/added_area"
+            android:layout_marginLeft="53dp"
             />
-        <Button
-            android:layout_marginLeft="48dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/area_button"
-            android:background="@drawable/ic_add_circle_black_24dp"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="240dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -53,25 +51,19 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             />
-        <EditText
-            android:layout_marginLeft="12dp"
+        <Spinner
+            android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Add New Pharmacy : "
-            android:id="@+id/added_pharmacy"
+            android:id="@+id/pharmacy_spinner"
         />
-        <Button
-            android:layout_marginLeft="5dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/pharma_button"
-            android:background="@drawable/ic_add_circle_black_24dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="300dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -98,12 +90,14 @@
             android:layout_height="30dp"
             android:background="@drawable/ic_send_black_24dp"
             android:layout_marginLeft="280dp"
+            android:layout_marginTop="300dp"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="380dp"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -111,39 +105,98 @@
             android:orientation="vertical"
             android:layout_marginRight="20dp"
             >
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Pharmacy : "
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pharma"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
+                android:text="Add New Pharmacy"
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Colored"
                 />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Area : "
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/area"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:text="Add New Area"
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Colored"
                 />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_sheet"
+        android:orientation="vertical"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="50dp"
+        app:elevation="4dp" >
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_navigation_black_24dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#35E6FF"
+            android:textStyle="bold"
+            android:text="Pull Up For Sales Person Details"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Total Sales"
+                android:textStyle="bold"
+                android:layout_marginRight="70dp"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="No Of Orders"
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Returns"
+                android:textStyle="bold"
+                android:layout_marginRight="70dp"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Earnings"
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Colored"
+                />
+        </LinearLayout>
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Profile"
+            style="@style/Widget.AppCompat.Button.Colored"
+            />
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>

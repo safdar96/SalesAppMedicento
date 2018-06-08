@@ -1,6 +1,9 @@
 package com.safdar.medicento.salesappmedicento;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,37 +12,54 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText mUsernameEditText,newPharma,newArea;
+    EditText mUsernameEditText;
     EditText mPasswordEditText;
     TextWatcher mTextWatcher;
-    TextView pharma,area;
-    Button mSignInButton,addPharma,addArea;
-    Spinner slots;
+    Button mSignInButton;
+    Spinner slots,pharma_spinner,area_spinner;
+    CoordinatorLayout coordinatorLayout;
+    View sales_person;
+    BottomSheetBehavior bottomSheetBehavior;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_area_details);
         slots = (Spinner) findViewById(R.id.slots);
-        addArea = (Button) findViewById(R.id.area_button);
-        addPharma = (Button) findViewById(R.id.pharma_button);
-        newPharma = (EditText) findViewById(R.id.added_pharmacy);
-        newArea = (EditText) findViewById(R.id.added_area);
-        pharma = (TextView) findViewById(R.id.pharma);
-        area = (TextView) findViewById(R.id.area);
+        pharma_spinner = (Spinner) findViewById(R.id.pharmacy_spinner);
+        area_spinner = (Spinner) findViewById(R.id.area_spinner);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.colayout);
+        sales_person = coordinatorLayout.findViewById(R.id.bottom_sheet);
+        bottomSheetBehavior = BottomSheetBehavior.from(sales_person);
 
-        // Slots Spinner
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+
+        //Spinners
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.slots,android.R.layout.simple_list_item_1);
         slots.setAdapter(adapter);
 
-        //
-        addArea.setOnClickListener(this);
-        addPharma.setOnClickListener(this);
+        ArrayAdapter<CharSequence> padapter = ArrayAdapter.createFromResource(this,R.array.pharma,android.R.layout.simple_list_item_1);
+        pharma_spinner.setAdapter(padapter);
+
+        ArrayAdapter<CharSequence> aadapter = ArrayAdapter.createFromResource(this,R.array.area,android.R.layout.simple_list_item_1);
+        area_spinner.setAdapter(aadapter);
 
        /* initializeDataMembers();
 
@@ -90,17 +110,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        newPharma = (EditText) findViewById(R.id.added_pharmacy);
-        newArea = (EditText) findViewById(R.id.added_area);
-        pharma = (TextView) findViewById(R.id.pharma);
-        area = (TextView) findViewById(R.id.area);
-        switch(v.getId()) {
-            case R.id.pharma_button:
-                pharma.setText(newPharma.getText());
-                break;
-            case R.id.area_button:
-                area.setText(newArea.getText());
-                break;
-        }
     }
 }
