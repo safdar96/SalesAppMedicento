@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText mUsernameEditText;
     EditText mPasswordEditText;
     TextWatcher mTextWatcher;
-    Button mSignInButton,totalSales, oredrs, returns, earnings,profile;
+    Button mSignInButton,totalSales, oredrs, returns, earnings,profile,pharmab,areab;
     AutoCompleteTextView pharma_spinner,area_spinner;
     Spinner slots;
     CoordinatorLayout coordinatorLayout;
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         earnings = (Button) findViewById(R.id.earnings);
         profile = (Button) findViewById(R.id.profile);
         slots = (Spinner) findViewById(R.id.slots);
+        pharmab = (Button) findViewById(R.id.pharmacyb);
+        areab = (Button) findViewById(R.id.areab);
         pharma_spinner = (AutoCompleteTextView) findViewById(R.id.pharmacy_spinner);
         area_spinner = (AutoCompleteTextView) findViewById(R.id.area_spinner);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.colayout);
@@ -73,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         returns.setOnClickListener(this);
         earnings.setOnClickListener(this);
         profile.setOnClickListener(this);
+        areab.setOnClickListener(this);
+        pharmab.setOnClickListener(this);
        /* initializeDataMembers();
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent intent;
+        pharma_spinner = (AutoCompleteTextView) findViewById(R.id.pharmacy_spinner);
+        area_spinner = (AutoCompleteTextView) findViewById(R.id.area_spinner);
         switch (v.getId()) {
             case R.id.totalSales: intent = new Intent(MainActivity.this, Details.class);
                                   intent.putExtra("text", ((Button)v).getText().toString());
@@ -146,6 +152,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.profile:    intent = new Intent(MainActivity.this, SalesPersonDetails.class);
                                   intent.putExtra("text",((Button)v).getText());
                                   startActivity(intent);
+                                  break;
+            case R.id.pharmacyb:  pharma_spinner.showDropDown();
+                                  break;
+            case R.id.areab:      area_spinner.showDropDown();
                                   break;
         }
     }
