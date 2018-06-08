@@ -18,7 +18,6 @@
         android:layout_marginTop="200dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,14 +25,19 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <Spinner
+        <AutoCompleteTextView
             android:id="@+id/area_spinner"
+            android:hint="Search For Area : "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="53dp"
             />
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,12 +54,19 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             />
-        <Spinner
+        <AutoCompleteTextView
             android:layout_marginLeft="5dp"
+            android:hint="Search For Pharmacy : "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/pharmacy_spinner"
         />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

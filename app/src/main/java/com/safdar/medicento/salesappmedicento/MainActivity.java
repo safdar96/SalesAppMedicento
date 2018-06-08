@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText mPasswordEditText;
     TextWatcher mTextWatcher;
     Button mSignInButton,totalSales, oredrs, returns, earnings,profile;
-    Spinner slots,pharma_spinner,area_spinner;
+    AutoCompleteTextView pharma_spinner,area_spinner;
+    Spinner slots;
     CoordinatorLayout coordinatorLayout;
     View sales_person;
     BottomSheetBehavior bottomSheetBehavior;
@@ -38,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         earnings = (Button) findViewById(R.id.earnings);
         profile = (Button) findViewById(R.id.profile);
         slots = (Spinner) findViewById(R.id.slots);
-        pharma_spinner = (Spinner) findViewById(R.id.pharmacy_spinner);
-        area_spinner = (Spinner) findViewById(R.id.area_spinner);
+        pharma_spinner = (AutoCompleteTextView) findViewById(R.id.pharmacy_spinner);
+        area_spinner = (AutoCompleteTextView) findViewById(R.id.area_spinner);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.colayout);
         sales_person = coordinatorLayout.findViewById(R.id.bottom_sheet);
 
