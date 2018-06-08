@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText mUsernameEditText;
     EditText mPasswordEditText;
     TextWatcher mTextWatcher;
-    Button mSignInButton;
+    Button mSignInButton,totalSales, oredrs, returns, earnings,profile;
     Spinner slots,pharma_spinner,area_spinner;
     CoordinatorLayout coordinatorLayout;
     View sales_person;
@@ -32,13 +32,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_area_details);
+        totalSales = (Button) findViewById(R.id.totalSales);
+        oredrs = (Button) findViewById(R.id.orders);
+        returns = (Button) findViewById(R.id.returns);
+        earnings = (Button) findViewById(R.id.earnings);
+        profile = (Button) findViewById(R.id.profile);
         slots = (Spinner) findViewById(R.id.slots);
         pharma_spinner = (Spinner) findViewById(R.id.pharmacy_spinner);
         area_spinner = (Spinner) findViewById(R.id.area_spinner);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.colayout);
         sales_person = coordinatorLayout.findViewById(R.id.bottom_sheet);
-        bottomSheetBehavior = BottomSheetBehavior.from(sales_person);
 
+        bottomSheetBehavior = BottomSheetBehavior.from(sales_person);
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -61,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter<CharSequence> aadapter = ArrayAdapter.createFromResource(this,R.array.area,android.R.layout.simple_list_item_1);
         area_spinner.setAdapter(aadapter);
 
+        totalSales.setOnClickListener(this);
+        oredrs.setOnClickListener(this);
+        returns.setOnClickListener(this);
+        earnings.setOnClickListener(this);
+        profile.setOnClickListener(this);
        /* initializeDataMembers();
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -110,5 +120,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.totalSales: intent = new Intent(MainActivity.this, Details.class);
+                                  intent.putExtra("text", ((Button)v).getText().toString());
+                                  startActivity(intent);
+                                  break;
+            case R.id.orders:     intent = new Intent(MainActivity.this, Details.class);
+                                  intent.putExtra("text", ((Button)v).getText().toString());
+                                  startActivity(intent);
+                                  break;
+
+            case R.id.returns:    intent = new Intent(MainActivity.this, Details.class);
+                                  intent.putExtra("text", ((Button)v).getText().toString());
+                                  startActivity(intent);
+                                  break;
+
+            case R.id.earnings:   intent = new Intent(MainActivity.this, Details.class);
+                                  intent.putExtra("text", ((Button)v).getText().toString());
+                                  startActivity(intent);
+                                  break;
+
+            case R.id.profile:    intent = new Intent(MainActivity.this, SalesPersonDetails.class);
+                                  intent.putExtra("text",((Button)v).getText());
+                                  startActivity(intent);
+                                  break;
+        }
     }
 }

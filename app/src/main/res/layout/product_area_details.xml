@@ -12,7 +12,6 @@
         android:src="@drawable/logo"
         android:layout_marginBottom="20dp"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -158,6 +157,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Total Sales"
+                android:id="@+id/totalSales"
                 android:textStyle="bold"
                 android:layout_marginRight="70dp"
                 style="@style/Widget.AppCompat.Button.Colored"
@@ -166,6 +166,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="No Of Orders"
+                android:id="@+id/orders"
                 android:textStyle="bold"
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
@@ -178,6 +179,7 @@
             <Button
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/returns"
                 android:text="Returns"
                 android:textStyle="bold"
                 android:layout_marginRight="70dp"
@@ -187,6 +189,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Earnings"
+                android:id="@+id/earnings"
                 android:textStyle="bold"
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
@@ -195,6 +198,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:id="@+id/profile"
             android:text="Profile"
             style="@style/Widget.AppCompat.Button.Colored"
             />
