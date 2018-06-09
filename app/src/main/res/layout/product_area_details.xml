@@ -61,17 +61,12 @@
             android:layout_width="wrap_content"
             android:completionThreshold="1"
             android:layout_height="wrap_content"
-            android:id="@+id/pharmacy_spinner"
-<<<<<<< Updated upstream
-        />
+            android:id="@+id/pharmacy_spinner"/>
         <Button
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/pharmacyb"
-            android:background="@drawable/ic_arrow_drop_down_black_24dp"
-=======
->>>>>>> Stashed changes
-            />
+            android:background="@drawable/ic_arrow_drop_down_black_24dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,6 +96,7 @@
         android:layout_marginBottom="20dp"
         >
         <Button
+            android:id="@+id/openPlaceOrder"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_send_black_24dp"
