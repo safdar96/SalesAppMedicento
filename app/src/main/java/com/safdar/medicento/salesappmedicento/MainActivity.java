@@ -16,7 +16,7 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button totalSales, oredrs, returns, earnings,profile,pharmab,areab;
+    Button totalSales, oredrs, returns, earnings,profile,pharmab,areab,newPharma,newArea;
     AutoCompleteTextView pharma_spinner,area_spinner;
     Spinner slots;
     CoordinatorLayout coordinatorLayout;
@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         returns = (Button) findViewById(R.id.returns);
         earnings = (Button) findViewById(R.id.earnings);
         profile = (Button) findViewById(R.id.profile);
+        newPharma = (Button) findViewById(R.id.add_new_pharma);
+        newArea = (Button) findViewById(R.id.add_new_area);
         slots = (Spinner) findViewById(R.id.slots);
         pharmab = (Button) findViewById(R.id.pharmacyb);
         areab = (Button) findViewById(R.id.areab);
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         profile.setOnClickListener(this);
         areab.setOnClickListener(this);
         pharmab.setOnClickListener(this);
+        newPharma.setOnClickListener(this);
+        newArea.setOnClickListener(this);
     }
 
     @Override
@@ -114,6 +118,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(this, PlaceOrderActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.add_new_pharma:    intent = new Intent(MainActivity.this, NewPharmacy.class);
+                                         intent.putExtra("area","Shastri Nagar");
+                                         intent.putExtra("city","New Delhi");
+                                         intent.putExtra("state","Delhi");
+                                         intent.putExtra("pincode","110031");
+                                         startActivity(intent);
+                                         break;
+
+            case R.id.add_new_area:    intent = new Intent(MainActivity.this, NewArea.class);
+                                        startActivity(intent);
+                                        break;
         }
     }
 }
