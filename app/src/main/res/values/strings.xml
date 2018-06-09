@@ -14,4 +14,9 @@
         <item>Rohini West</item>
         <item>Hauz Khas</item>
     </string-array>
+    <string-array name="medicines">
+        <item>Crocin</item>
+        <item>Paracetamol</item>
+        <item>Asprin</item>
+    </string-array>
 </resources>
