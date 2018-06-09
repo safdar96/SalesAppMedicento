@@ -16,10 +16,7 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText mUsernameEditText;
-    EditText mPasswordEditText;
-    TextWatcher mTextWatcher;
-    Button mSignInButton,totalSales, oredrs, returns, earnings,profile,pharmab,areab;
+    Button totalSales, oredrs, returns, earnings,profile,pharmab,areab;
     AutoCompleteTextView pharma_spinner,area_spinner;
     Spinner slots;
     CoordinatorLayout coordinatorLayout;
