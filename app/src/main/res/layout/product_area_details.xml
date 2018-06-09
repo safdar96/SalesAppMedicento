@@ -12,14 +12,12 @@
         android:src="@drawable/logo"
         android:layout_marginBottom="20dp"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,14 +25,20 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <Spinner
+        <AutoCompleteTextView
             android:id="@+id/area_spinner"
+            android:hint="Search For Area : "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="53dp"
+            android:completionThreshold="1"
             />
-
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/areab"
+            android:background="@drawable/ic_arrow_drop_down_black_24dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,12 +55,20 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             />
-        <Spinner
+        <AutoCompleteTextView
             android:layout_marginLeft="5dp"
+            android:hint="Search For Pharmacy : "
             android:layout_width="wrap_content"
+            android:completionThreshold="1"
             android:layout_height="wrap_content"
             android:id="@+id/pharmacy_spinner"
         />
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/pharmacyb"
+            android:background="@drawable/ic_arrow_drop_down_black_24dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -158,6 +170,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Total Sales"
+                android:id="@+id/totalSales"
                 android:textStyle="bold"
                 android:layout_marginRight="70dp"
                 style="@style/Widget.AppCompat.Button.Colored"
@@ -166,6 +179,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="No Of Orders"
+                android:id="@+id/orders"
                 android:textStyle="bold"
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
@@ -178,6 +192,7 @@
             <Button
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/returns"
                 android:text="Returns"
                 android:textStyle="bold"
                 android:layout_marginRight="70dp"
@@ -187,6 +202,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Earnings"
+                android:id="@+id/earnings"
                 android:textStyle="bold"
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
@@ -195,6 +211,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:id="@+id/profile"
             android:text="Profile"
             style="@style/Widget.AppCompat.Button.Colored"
             />
