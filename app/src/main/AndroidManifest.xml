@@ -16,8 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlaceOrderActivity"></activity>
-        <activity android:name=".ConfirmOrderActivity"/>
+        <activity android:name=".PlaceOrderActivity"
+            android:label="Place Order">
+        </activity>
+        <activity android:name=".ConfirmOrderActivity"
+            android:label="Confirm Order"/>
     </application>
 
 </manifest>
