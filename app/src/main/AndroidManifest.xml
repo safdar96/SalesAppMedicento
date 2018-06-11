@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.safdar.medicento.salesappmedicento">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_round"
@@ -23,6 +23,8 @@
             android:name=".ConfirmOrderActivity"
             android:label="Confirm Order" />
         <activity android:name=".NewPharmacy" />
+        <activity android:name=".Details" />
+        <activity android:name=".SalesPersonDetails" />
         <activity android:name=".NewArea"></activity>
     </application>
 

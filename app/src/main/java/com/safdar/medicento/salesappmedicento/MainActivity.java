@@ -1,32 +1,59 @@
 package com.safdar.medicento.salesappmedicento;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.CompletionInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button totalSales, oredrs, returns, earnings,profile,pharmab,areab,newPharma,newArea;
+    Button totalSales, oredrs, returns, earnings,profile,pharmab,areab,newPharma,newArea,fetch;
     AutoCompleteTextView pharma_spinner,area_spinner;
     Spinner slots;
     CoordinatorLayout coordinatorLayout;
     View sales_person;
     BottomSheetBehavior bottomSheetBehavior;
+    public static final String FoodNameArray = "area_name";
+    public static final String FoodName = "name";
+    public static final String JSON_ARRAY = "result";
+    private JSONArray result;
+    String  FName;
+    private ArrayList<String> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_area_details);
+        fetch = (Button) findViewById(R.id.fetch);
         totalSales = (Button) findViewById(R.id.totalSales);
         oredrs = (Button) findViewById(R.id.orders);
         returns = (Button) findViewById(R.id.returns);
@@ -54,19 +81,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-
         Button btn = findViewById(R.id.add_new_area);
         btn.setOnClickListener(this);
 
+        fetch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = area_spinner.getText().toString();
+                Uri uri = Uri.parse("http://192.168.0.9/getPharma.php")
+                        .buildUpon()
+                        .appendQueryParameter("area_name",s)
+                        .appendQueryParameter("search","Submit Query")
+                        .build();
+                RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, uri.toString(),
+                        new Response.Listener<String>() {
+                            ArrayAdapter arrayAdapter;
+                            @Override
+                            public void onResponse(String response) {
+                                String s;
+                                arrayList = new ArrayList<>();
+                                try {
+                                    JSONObject jo = new JSONObject(response);
+                                    JSONArray ja = jo.getJSONArray("result");
+                                    int count = 0;
+                                    while (count < ja.length()) {
+                                        JSONObject joa = ja.getJSONObject(count);
+                                        s = joa.getString("firm_name");
+                                        arrayList.add(s);
+                                        count++;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                arrayAdapter = new ArrayAdapter(MainActivity.this, R.layout.support_simple_spinner_dropdown_item, arrayList);
+                                pharma_spinner.setAdapter(arrayAdapter);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+                );
+                requestQueue.add(stringRequest);
+            }
+        });
         //Spinners
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.slots, android.R.layout.simple_list_item_1);
         slots.setAdapter(adapter);
+        arrayList = new ArrayList<String>();
+        getdata();
 
-        ArrayAdapter<CharSequence> padapter = ArrayAdapter.createFromResource(this, R.array.pharma, android.R.layout.simple_list_item_1);
-        pharma_spinner.setAdapter(padapter);
+        ArrayAdapter<CharSequence> aadapter = ArrayAdapter.createFromResource(this, R.array.pharma, android.R.layout.simple_list_item_1);
+        pharma_spinner.setAdapter(aadapter);
 
-        ArrayAdapter<CharSequence> aadapter = ArrayAdapter.createFromResource(this, R.array.area, android.R.layout.simple_list_item_1);
-        area_spinner.setAdapter(aadapter);
         Button btn2 = findViewById(R.id.openPlaceOrder);
 
         btn2.setOnClickListener(this);
@@ -130,5 +199,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         startActivity(intent);
                                         break;
         }
+    }
+    private void getdata() {
+        StringRequest stringRequest = new StringRequest("http://192.168.0.9/getArea.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject j = null;
+                        try {
+                            j = new JSONObject(response);
+                            result = j.getJSONArray(JSON_ARRAY);
+                            name(result);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void name(JSONArray j) {
+        for (int i = 0; i < j.length(); i++) {
+            try {
+                JSONObject json = j.getJSONObject(i);
+                arrayList.add(json.getString(FoodNameArray));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        // arrayList.add(0,"Select Employee");
+        area_spinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_dropdown_item, arrayList));
     }
 }
