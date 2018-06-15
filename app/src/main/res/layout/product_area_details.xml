@@ -47,13 +47,12 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="240dp"
         >
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Pharmacy : "
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
+            android:text="Fetch Pharmacy "
+            android:id="@+id/fetch"
+            style="@style/Widget.AppCompat.Button.Colored"
             />
         <AutoCompleteTextView
             android:layout_marginLeft="5dp"
@@ -104,6 +103,7 @@
             android:layout_marginTop="300dp"
             />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add New Pharmacy"
+                android:id="@+id/add_new_pharma"
                 android:textStyle="bold"
                 style="@style/Widget.AppCompat.Button.Colored"
                 />
